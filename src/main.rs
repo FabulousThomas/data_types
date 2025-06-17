@@ -26,13 +26,27 @@ fn arrays() {
     // println!("array[3] = {}", array[3]);
 }
 
+fn sum(a: i32, b: i32) -> i32 {
+    return a + b;
+}
+
+fn slices() {
+    let slice = String::from("1, 2, 3, 4, 5");
+    println!("slice = {}", slice);
+    let sliced = &slice[3..8];
+    println!("slice[5] = {}", sliced);
+}
+
 fn main() {
     self::integers();
     self::floats();
     self::tuples();
     self::arrays();
+
+    let result = self::sum(1, 3);
+    println!("Result of sum: {}", result);
     // Uncomment the following line to see the panic
-    // self::slices();
+    self::slices();
     // self::strings();
     // self::structs();
     // self::enums();
