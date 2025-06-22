@@ -33,8 +33,83 @@ fn sum(a: i32, b: i32) -> i32 {
 fn slices() {
     let slice = String::from("1, 2, 3, 4, 5");
     println!("slice = {}", slice);
-    let sliced = &slice[3..8];
-    println!("slice[5] = {}", sliced);
+    let sliced = &slice[3..7];
+    println!("slice[2 & 3] = {}", sliced);
+}
+
+fn structs() {
+    #[derive(Debug)]
+    struct Users {
+        username: String,
+        email: String,
+        password: String,
+    }
+
+    let user = Users {
+        username: String::from("john_doe"),
+        email: String::from("johndoe@email.com"),
+        password: String::from("password123"),
+    };
+
+    println!("User = {:#?}", user);
+    // println!("User = {}", user.email);
+    // println!("User = {}", user.password);
+}
+
+fn implementations() {
+    struct Rectangle {
+        width: u32,
+        height: u32,
+    }
+
+    impl Rectangle {
+        fn area(&self) -> u32 {
+            self.width * self.height
+        }
+    }
+
+    let rect = Rectangle {
+        width: 30,
+        height: 50,
+    };
+    println!("Rectangle width: {}, height: {}", rect.width, rect.height);
+    println!("Area of Rectangle: {}, ", rect.area());
+}
+
+fn enums() {
+    enum Direction {
+        Up,
+        Down,
+        Left,
+        Right,
+    }
+
+    impl Direction {
+        fn is_vertical(&self) -> &str {
+            match self {
+                Direction::Up | Direction::Down => "YES",
+                _ => "NO",
+            }
+        }
+    }
+    let direction = Direction::Left;
+    match direction {
+        Direction::Up => println!("Moving Up"),
+        Direction::Down => println!("Moving Down"),
+        Direction::Left => println!("Moving Left"),
+        Direction::Right => println!("Moving Right"),
+    }
+    println!("Is direction vertical? {}", direction.is_vertical());
+}
+
+fn matchs() {
+    let number = 1;
+    match number {
+        1 => println!("One"),
+        2 => println!("Two"),
+        3 => println!("Three"),
+        _ => println!("Not One, Two, or Three"),
+    }
 }
 
 fn main() {
@@ -45,11 +120,14 @@ fn main() {
 
     let result = self::sum(1, 3);
     println!("Result of sum: {}", result);
-    // Uncomment the following line to see the panic
+
     self::slices();
+    self::structs();
+    self::implementations();
+    self::enums();
+    self::matchs();
+    // Uncomment the following line to see the panic
     // self::strings();
-    // self::structs();
-    // self::enums();
     // self::vectors();
     // self::hashmaps();
 }
